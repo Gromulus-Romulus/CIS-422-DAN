@@ -10,14 +10,18 @@ def home():
 def login():
     return render_template("login.html")
 
-@views.route('/signup')
+@views.route('/signup') #methods = ['POST', 'GET']
 def start_quiz():
     q = get_questions()
+    # TODO get return data on submission
     return render_template("signup.html", questions=q)
 
 def get_questions():
-    questions = [['question a', ['answer a1', "answer a2"]],['question b', ['answer b1', 'answer b2']],['question c', ['answer 1c', 'answer 2c']]]
-    # TODO get actual data for here
+    questions = [['question a', ['answer a1', "answer a2"]],
+    ['question b', ['answer b1', 'answer b2']],
+    ['question c', ['answer 1c', 'answer 2c']]]
+    # TODO get actual data for here, 
+    # TODO store more info for q and a ids?
     return questions
 
 @views.route('/for-shelters')
@@ -30,12 +34,26 @@ def about():
 
 @views.route('/dogs')
 def dogs():
-    return render_template("dogs.html")
+    d = get_all_dog_ids()
+    # i = 0
+    return render_template("all-dogs.html", dogs=d)
+
+def get_all_dog_ids():
+    # for now these are just their names I made up
+    d = [["Marvin", "big", "../static/exe-dog.jpeg"], 
+    ["Fido", "little", "../static/exe-dog3.jpeg"], 
+    # ["Binger", "medium", "../static/exe-dog.jpeg"], 
+    ["Carl", "little", "../static/exe-dog.jpeg"], 
+    ["Lindsey", "medium", "../static/exe-dog3.jpeg"]]
+    return d
+
+# def get_my_dogs(usr_id):
+#     return 
 
 @views.route('/test')
 def test():
     q = get_questions()
-    return render_template("test.html", questions=q)
+    return render_template("test.html", test=q)
 
 
 # TODO use add_url_rule instead? may have to restructure files to access "app"

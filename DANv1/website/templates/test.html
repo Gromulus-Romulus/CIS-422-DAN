@@ -3,11 +3,9 @@
 
 {% block content %}
 <div class="container">
-    {% for q in questions %}
-    <h4>{{ q[0] }}</h4>
-        {% for a in q[1] %}
-        <p>{{ a }}</p>
-        {% endfor %}
+    {% for i in test %}
+    <h4>{{ i }}</h4>
     {% endfor %}
 </div>
 {% endblock %}
+
