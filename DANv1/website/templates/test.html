@@ -3,9 +3,11 @@
 
 {% block content %}
 <div class="container">
-    {% for i in test %}
-    <h4>{{ i }}</h4>
-    {% endfor %}
+    <h1>test</h1>
+    <form action="#" method="post">
+        <input type="hidden" name="value" value="Marvin">
+        <button class="btn btn-primary" type="submit" name="view_profile" value="viewMarvin">View Marvin</button>
+    </form>
 </div>
 {% endblock %}
 

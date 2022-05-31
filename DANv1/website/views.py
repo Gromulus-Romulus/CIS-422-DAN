@@ -37,8 +37,8 @@ def dogs():
     if request.method == "POST":
         dogid = request.form["value"]
         # dog = "Marvin"
-        dogp = get_dog_by_id(dogid)
-        return render_template("dog-profile.html", dogp=dogp)
+        dogid = get_dog_by_id(dogid)
+        return redirect(url_for("views.dog_profile", dogid = dogid))
         # return redirect(url_for("views.dog_profile", dogid = dog))
     d = get_all_dog_ids()
     # i = 0
@@ -56,29 +56,25 @@ def get_all_dog_ids():
 # def get_my_dogs(usr_id):
 #     return 
 
-# @views.route('/<dogid>')
-# def dog_profile(dogid):
-#     dogp = get_dog_by_id(dogid)
-#     # TODO replace with get dog by id
-#     return render_template("dog-profile.html", dogp = dogp)
-
-# @views.route('/<dogid>')
-# def dog_profile(dogid):
-#     dogp = ["Marvin", "big", "../static/exe-dog.jpeg"]
-#     # TODO replace with get dog by id
-#     return render_template("dog-profile.html", dogp)
-
-@views.route('/test')
+@views.route('/test', methods=["POST", "GET"])
 def test():
-    q = get_questions()
-    return render_template("test.html", test=q)
+    if request.method == "POST":
+        dogid = request.form["value"]
+        return redirect(url_for("views.dog_profile", dogid = dogid))
+    d = get_all_dog_ids()
+    return render_template("test.html", test=d)
+
+@views.route("/<dogid>")
+def dog_profile(dogid):
+    return render_template("dog-profile.html", dogid = dogid)
 
 # TODO store dogs as objects in a csk map?
 # TODO or have a db call using dogid that returns a dog object or dict or something
 
 def get_dog_by_id(dogid):
-    dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
-    return dogp
+    # dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
+    # TODO this will perform a search function or pull from the db or something
+    return dogid
 
 
 # TODO use add_url_rule instead? may have to restructure files to access "app"
