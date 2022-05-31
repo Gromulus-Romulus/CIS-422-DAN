@@ -3,6 +3,20 @@
 
 {% block content %}
 <div class="container">
-
+    {% for d in dogs %}
+    <div class="row">
+        <div class="col-sm-6">
+        <div class="card">
+            <img src={{d[2]}} class="card-img-top" alt="...">
+            <!-- <h5 class="card-header">Featured</h5> -->
+            <div class="card-body">
+              <h5 class="card-title">{{d[0]}}</h5>
+              <p class="card-text">{{d[1]}}</p>
+              <a href="#" class="btn btn-primary">See {{d[0]}}</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
