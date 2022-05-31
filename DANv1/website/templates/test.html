@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}look at all these dogs!{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for q in questions %}
+    <h4>{{ q[0] }}</h4>
+        {% for a in q[1] %}
+        <p>{{ a }}</p>
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}
