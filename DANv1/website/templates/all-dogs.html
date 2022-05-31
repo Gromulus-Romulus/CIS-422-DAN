@@ -12,7 +12,12 @@
             <div class="card-body">
               <h5 class="card-title">{{d[0]}}</h5>
               <p class="card-text">{{d[1]}}</p>
-              <a href="#" class="btn btn-primary">See {{d[0]}}</a>
+              <!-- <a href="/profile" class="btn btn-primary" name="dog-name">See {{d[0]}}</a> -->
+              <!-- TODO custom urls for each dog via their dogid -->
+              <form action="#" method="post">
+                  <input type="hidden" name="value" value="{{d[0]}}">
+                  <button class="btn btn-primary" type="submit" name="view_profile" value="View {{d[0]}}">View {{d[0]}}</button>
+              </form>
             </div>
           </div>
         </div>

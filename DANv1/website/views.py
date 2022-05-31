@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, url_for, redirect
 
 views = Blueprint('views', __name__)
 
@@ -32,28 +32,53 @@ def shelter():
 def about():
     return render_template("about.html")
 
-@views.route('/dogs')
+@views.route('/dogs', methods=["GET", "POST"])
 def dogs():
+    if request.method == "POST":
+        dogid = request.form["value"]
+        # dog = "Marvin"
+        dogp = get_dog_by_id(dogid)
+        return render_template("dog-profile.html", dogp=dogp)
+        # return redirect(url_for("views.dog_profile", dogid = dog))
     d = get_all_dog_ids()
     # i = 0
     return render_template("all-dogs.html", dogs=d)
 
 def get_all_dog_ids():
     # for now these are just their names I made up
-    d = [["Marvin", "big", "../static/exe-dog.jpeg"], 
-    ["Fido", "little", "../static/exe-dog3.jpeg"], 
-    # ["Binger", "medium", "../static/exe-dog.jpeg"], 
-    ["Carl", "little", "../static/exe-dog.jpeg"], 
-    ["Lindsey", "medium", "../static/exe-dog3.jpeg"]]
+    d = [["Marvin", "big", "../static/exe-dog.jpeg", "1"], 
+    ["Fido", "little", "../static/exe-dog3.jpeg", "2"], 
+    ["Binger", "medium", "../static/exe-dog.jpeg", "3"], 
+    ["Carl", "little", "../static/exe-dog.jpeg", "4"], 
+    ["Lindsey", "medium", "../static/exe-dog3.jpeg", "5"]]
     return d
 
 # def get_my_dogs(usr_id):
 #     return 
 
+# @views.route('/<dogid>')
+# def dog_profile(dogid):
+#     dogp = get_dog_by_id(dogid)
+#     # TODO replace with get dog by id
+#     return render_template("dog-profile.html", dogp = dogp)
+
+# @views.route('/<dogid>')
+# def dog_profile(dogid):
+#     dogp = ["Marvin", "big", "../static/exe-dog.jpeg"]
+#     # TODO replace with get dog by id
+#     return render_template("dog-profile.html", dogp)
+
 @views.route('/test')
 def test():
     q = get_questions()
     return render_template("test.html", test=q)
+
+# TODO store dogs as objects in a csk map?
+# TODO or have a db call using dogid that returns a dog object or dict or something
+
+def get_dog_by_id(dogid):
+    dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
+    return dogp
 
 
 # TODO use add_url_rule instead? may have to restructure files to access "app"
