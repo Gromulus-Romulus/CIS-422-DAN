@@ -24,7 +24,7 @@ def get_questions():
     # TODO store more info for q and a ids?
     return questions
 
-@views.route('/for-shelters')
+@views.route('/shelter-login')
 def shelter():
     return render_template("shelter-login.html")
 

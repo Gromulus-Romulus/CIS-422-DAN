@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %}look at this one dog!{% endblock %}
-
+{% set active_page = none %}
 {% block content %}
-<div class="container">
-    <div class="row-fluid">
-        <div class="col">
+<!-- <div class="container"> -->
+    <div class="row bg-light">
+        <div class="col-sm">
             <h3>{{dogid}}</h3>
             <h4>Male - Adult</h4>
             <p>Neutered</p>
@@ -14,10 +14,12 @@
             <p>Energy Needs: </p>
             <p>Attention Needs: </p>
         </div>
-        <div class="col">
-            
+        <div class="col-sm align-items-center">
+            <img class="imgfluid" src="../static/main-dog.jpeg" alt="dog image">
+            <p>this will probably eventually be associated with the dog</p>
+
         </div>
     </div>
-</div>
+<!-- </div> -->
 {% endblock %}
 

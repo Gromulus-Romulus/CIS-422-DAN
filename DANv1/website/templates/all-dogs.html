@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}look at all these dogs!{% endblock %}
-
+{% set active_page = none %}
 {% block content %}
-<div class="container">
+<!-- <div class="container"> -->
     {% for d in dogs %}
     <div class="row">
         <div class="col-sm-6">
@@ -23,5 +23,5 @@
         </div>
     </div>
     {% endfor %}
-</div>
+<!-- </div> -->
 {% endblock %}
