@@ -1,33 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
-
+{% set active_page = 'home' %}
 {% block content %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-    <!-- TODO add brand back in? -->
-    <!-- TODO if we can toggle the navbar buttons, add this navbar to base.html instead -->
-    <button class="navbar-toggler" 
-    type="button" 
-    data-toggle="collapse" 
-    data-target="#navbarSupportedContent" 
-    aria-controls="navbar" 
-    aria-expanded="false" 
-    aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class = "collapse navbar-collapse" id="navbar">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" id="home" href="/">Home</a>
-            <a class="nav-item nav-link" id="about" href="/about">About</a>
-            <a class="nav-item nav-link" id="login" href="/login">Login</a>
-            <a class="nav-item nav-link" id="for-shelters" href="/for-shelters">For Shelters</a>
-        </div>
-    </div>
-  </nav>
-
-<div class = "container">
-    <div class = "row">
+<!-- <div class = "container align-items-center"> -->
+    <div 
+    class = "row align-items-center"
+    style="min-height: 90vh">
         <!-- TODO center (or at least lower) this entire thing-->
         <!-- TODO put the content from the left col into a card -->
         <div class="col-xl-4 align-self-center bg-light">
@@ -35,18 +14,18 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere aut sapiente perferendis provident dolores consequatur inventore pariatur eum fugiat, atque beatae nostrum rem cumque unde magnam ullam doloribus, iusto deserunt.
                 </p>
                 <div class="row justify-content-around">
-                    <div class = "col-med">
+                    <div class = "col-md">
                         <a href="signup"><button class="btn btn-primary">Start</button></a>
                     </div>
-                    <div class = "col-med">
+                    <div class = "col-md">
                         <a href="dogs"><button class="btn btn-outline-primary">View Dogs</button></a>
                     </div>
                 </div>
         </div>
         <div class="col-xl-8 align-self-center">
-            <a href="https://placeholder.com"><img src="https://via.placeholder.com/400"></a>
+            <img src="../static/main-dog.jpeg"></a>
         </div>
     </div>
 
-</div>
+<!-- </div> -->
 {% endblock %}
