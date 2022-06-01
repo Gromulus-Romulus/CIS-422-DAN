@@ -4,24 +4,25 @@
 {% block content %}
 <!-- <div class="container"> -->
     {% for d in dogs %}
+    {% if loop.index0 % 4 == 0 %}
     <div class="row">
-        <div class="col-sm-6">
+    {% endif %}
+    <div class="col-md-3 py-2">
         <div class="card">
-            <img src={{d[2]}} class="card-img-top" alt="...">
-            <!-- <h5 class="card-header">Featured</h5> -->
+            <img src="{{d[2]}}" class="img-fluid" alt="Responsive image">
             <div class="card-body">
-              <h5 class="card-title">{{d[0]}}</h5>
-              <p class="card-text">{{d[1]}}</p>
-              <!-- <a href="/profile" class="btn btn-primary" name="dog-name">See {{d[0]}}</a> -->
-              <!-- TODO custom urls for each dog via their dogid -->
-              <form action="#" method="post">
-                  <input type="hidden" name="value" value="{{d[0]}}">
-                  <button class="btn btn-primary" type="submit" name="view_profile" value="View {{d[0]}}">View {{d[0]}}</button>
-              </form>
+                <h5 class="card-title">{{d[0]}}</h5>
+                <p class="card-text">{{d[1]}}</p>
+                        <form action="#", method="post">
+                      <input type="hidden" name="value" value="{{d[0]}}">
+                      <button class="btn btn-primary" type="submit" name="view_profile" value="View {{d[0]}}">View {{d[0]}}</button>
             </div>
-          </div>
         </div>
     </div>
+    {% if (loop.index0+1) % 4 == 0 or loop.last%}
+    
+    </div>
+    {% endif %}
     {% endfor %}
 <!-- </div> -->
 {% endblock %}

@@ -46,27 +46,34 @@ def dogs():
 
 def get_all_dog_ids():
     # for now these are just their names I made up
+    # this should pull just the info we want to display in the all dog view including the id
     d = [["Marvin", "big", "../static/exe-dog.jpeg", "1"], 
     ["Fido", "little", "../static/exe-dog3.jpeg", "2"], 
     ["Binger", "medium", "../static/exe-dog.jpeg", "3"], 
     ["Carl", "little", "../static/exe-dog.jpeg", "4"], 
-    ["Lindsey", "medium", "../static/exe-dog3.jpeg", "5"]]
+    ["Lindsey", "medium", "../static/exe-dog3.jpeg", "5"],
+    ["Annika", "big", "../static/exe-dog.jpeg", "1"], 
+    ["Rose", "little", "../static/main-dog.jpeg", "2"], 
+    ["Bella", "medium", "../static/exe-dog.jpeg", "3"], 
+    ["Bob", "little", "../static/exe-dog.jpeg", "4"], 
+    ["Phife", "medium", "../static/exe-dog3.jpeg", "5"]]
     return d
+
+@views.route("/<dogid>")
+def dog_profile(dogid):
+    # this will call get dog by id and that will return the dog object
+    # dogp = get_dog_by_id(dogid)
+    return render_template("dog-profile.html", dogid = dogid)
 
 # def get_my_dogs(usr_id):
 #     return 
 
-@views.route('/test', methods=["POST", "GET"])
+@views.route('/test')
 def test():
-    if request.method == "POST":
-        dogid = request.form["value"]
-        return redirect(url_for("views.dog_profile", dogid = dogid))
-    d = get_all_dog_ids()
+    d = [0,1,2,3,4,5,6]
     return render_template("test.html", test=d)
 
-@views.route("/<dogid>")
-def dog_profile(dogid):
-    return render_template("dog-profile.html", dogid = dogid)
+
 
 # TODO store dogs as objects in a csk map?
 # TODO or have a db call using dogid that returns a dog object or dict or something
