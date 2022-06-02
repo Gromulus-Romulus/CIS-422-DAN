@@ -1,8 +1,11 @@
 from flask import Flask
 
+
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = "doggie doghhhh"
+
+    # creates our secret code
+    app.config["SECRET_KEY"] = "dogs"
 
     from .views import views
     # from .auth import auth
