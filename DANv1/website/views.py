@@ -63,16 +63,19 @@ def get_all_dog_ids():
 def dog_profile(dogid):
     # this will call get dog by id and that will return the dog object
     # dogp = get_dog_by_id(dogid)
+    # note: can also use an offcanvas element: https://getbootstrap.com/docs/5.2/components/offcanvas/#body-scrolling
     return render_template("dog-profile.html", dogid = dogid)
 
 # def get_my_dogs(usr_id):
 #     return 
 
-@views.route('/test')
+@views.route('/test', methods=["POST", "GET"])
 def test():
-    d = [0,1,2,3,4,5,6]
-    return render_template("test.html", test=d)
+    if request.method == "POST":
+        d = 1
+        return f"<h1>{d}</h1>"
 
+    return render_template("test.html")
 
 
 # TODO store dogs as objects in a csk map?
