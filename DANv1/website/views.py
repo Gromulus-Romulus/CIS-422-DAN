@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect, flash
+#from website import website
+from website.forms import LoginForm
 
 views = Blueprint('views', __name__)
 
@@ -6,9 +8,25 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html")
 
-@views.route('/login')
+# methods['GET', 'POST'] tells view function to accept GET and POST requests
+@views.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template("login.html")
+    '''handles logic of login process'''
+
+    # stores wtform in 'form' var
+    # wtform defined as LoginForm class in forms.py
+    form = LoginForm()
+
+    # checks if form's fields' requirements have been met
+    if form.validate_on_submit():
+        # flash() makes Flask store the message with the desired format
+        flash('Login requested for user {}, password={},remember_me={}'.format(
+            form.username.data, form.password.data, form.remember_me.data))
+        # redirect() takes the user to the route argument
+        return redirect('/index')
+
+    # if the form hasn't been filled the method will render the given html template
+    return render_template("login.html", title='Sign In', form=form)
 
 @views.route('/signup') #methods = ['POST', 'GET']
 def start_quiz():

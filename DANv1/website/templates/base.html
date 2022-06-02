@@ -16,8 +16,14 @@
     <link rel="stylesheet"
     type="text/css"
     href="../static/custom.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
 
     <title>{% block title %}Base{% endblock %}</title>
+
 </head>
 <body>
 <!-- navbar stuff here -->
@@ -52,6 +58,24 @@
       </div>
   </div>
 </nav>
+
+<!-- hr shows break in code -->
+<hr>
+        <!-- get_flashed_messages() is a Flask function that
+        returns the last message registered with flash() -->
+        {% with messages = get_flashed_messages() %}
+        <!-- checks if messages has content -->
+        {% if messages %}
+        <ul>
+            <!-- iterates through messages' content -->
+            {% for message in messages %}
+            <!-- displays message contents on webpage (FOR TEMPORARY TESTING) -->
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
 <div class="container">
   {% block content %}Content
   {% endblock %}
@@ -73,5 +97,6 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"
     ></script>
+
 </body>
 </html>
