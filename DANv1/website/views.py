@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, url_for, redirect, flash
 #from website import website
 from website.forms import LoginForm
+from website.dog import Dog
 
 views = Blueprint('views', __name__)
 
@@ -81,16 +82,20 @@ def get_all_dog_ids():
 def dog_profile(dogid):
     # this will call get dog by id and that will return the dog object
     # dogp = get_dog_by_id(dogid)
-    return render_template("dog-profile.html", dogid = dogid)
+    # note: can also use an offcanvas element: https://getbootstrap.com/docs/5.2/components/offcanvas/#body-scrolling
+    dogp=get_dog_by_id(dogid)
+    return render_template("dog-profile.html", dogp = dogp)
 
 # def get_my_dogs(usr_id):
 #     return 
 
-@views.route('/test')
+@views.route('/test', methods=["POST", "GET"])
 def test():
-    d = [0,1,2,3,4,5,6]
-    return render_template("test.html", test=d)
+    if request.method == "POST":
+        d = "test"
+        return f"<h1>{d}</h1>"
 
+    return render_template("test.html")
 
 
 # TODO store dogs as objects in a csk map?
@@ -99,7 +104,8 @@ def test():
 def get_dog_by_id(dogid):
     # dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
     # TODO this will perform a search function or pull from the db or something
-    return dogid
+    d = Dog(dogid, "Marvin", "big")
+    return d
 
 
 # TODO use add_url_rule instead? may have to restructure files to access "app"
