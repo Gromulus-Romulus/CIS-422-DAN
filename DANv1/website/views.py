@@ -98,9 +98,10 @@ def test():
     form = QuizForm()
     if form.validate_on_submit():
         # flash() makes Flask store the message with the desired format
-        flash('Login requested for user {}, password={},remember_me={}'.format(
-            form.myField.data, form.myField.data, form.myField.data))
+        flash('Field1: {}, Field2: {}'.format(
+            form.myField1.data, form.myField2.data))
         # redirect() takes the user to the route argument
+        print('SUCCESS')
         return redirect('/index')
 
     # TODO get return data on submission

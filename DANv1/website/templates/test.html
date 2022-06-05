@@ -5,13 +5,13 @@
 
 
 
-<form action="" method="post" novalidate>
-    {% for q in questions %}
-    <p>{{q[0]}}</p>
-    {{form.hidden_tag()}}
-    {{q[1]}}{{q[2]}}
-        {{form.myField}}
-    {% endfor %}
+<form action="" method="post" >
+
+    <p>{{ form.myField1.label }}
+        {{form.myField1}}</p>
+
+    <p>{{ form.myField2.label }}
+        {{form.myField2}}</p>
 
     <p>{{ form.submit() }}</p>
 
@@ -20,6 +20,3 @@
 
 
 {% endblock %}
-
-
-
