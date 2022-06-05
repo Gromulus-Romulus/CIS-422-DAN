@@ -60,19 +60,21 @@ def about():
 def dogs():
     if request.method == "POST":
         dogid = request.form["value"]
-        # dog = "Marvin"
+        # print(dogid)
         # dogid = get_dog_by_id(dogid)
-        return redirect(url_for("views.dog_profile", dogid = dogid))
+        return f"<h1>{dogid}</h1>"
+        # return redirect(url_for("views.dog_profile", dogid = dogid))
         # return redirect(url_for("views.dog_profile", dogid = dog))
-    d = getDogs()
+    d = get_all_dog_ids()
+    # d = getDogs()
     # i = 0
-    return render_template("all-dogs.html", dogs=d)
+    return render_template("all-dogs-test.html", dogs=d)
 
 def get_all_dog_ids():
     # for now these are just their names I made up
     # this should pull just the info we want to display in the all dog view including the id
-    d = [["Marvin", "big", "../static/exe-dog.jpeg", "1"], 
-    ["Fido", "little", "../static/exe-dog3.jpeg", "2"], 
+    d = [["9", "Marvin", "big", "../static/exe-dog.jpeg", "1"], 
+    ["3","Fido", "little", "../static/exe-dog3.jpeg", "2"], 
     ["Binger", "medium", "../static/exe-dog.jpeg", "3"], 
     ["Carl", "little", "../static/exe-dog.jpeg", "4"], 
     ["Lindsey", "medium", "../static/exe-dog3.jpeg", "5"],
