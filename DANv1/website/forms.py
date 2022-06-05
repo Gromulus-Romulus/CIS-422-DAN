@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 class LoginForm(FlaskForm):
@@ -11,3 +11,11 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+class QuizForm(FlaskForm):
+    # INCREDIBLY SCUFFED QUIZ METHOD: create a unique SelectField() for each question
+    submit = SubmitField('Submit')
+    myField1 = SelectField('Question1', choices=("Answer1a","Answer1b","Answer1c"))
+    myField2 = SelectField('Question2', choices=("Answer2a", "Answer2b", "Answer3c"))
+
+#, validators=[DataRequired()]
