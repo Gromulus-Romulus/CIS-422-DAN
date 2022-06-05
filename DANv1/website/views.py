@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, request, url_for, redirect, flash
 from website.forms import LoginForm
 from website.forms import QuizForm
 
+masterList = []
 
 views = Blueprint('views', __name__)
 
@@ -30,13 +31,39 @@ def login():
     # if the form hasn't been filled the method will render the given html template
     return render_template("login.html", title='Sign In', form=form)
 
-@views.route('/signup') #methods = ['POST', 'GET']
+@views.route('/signup', methods = ['POST', 'GET'])
 def start_quiz():
+
+    global masterList
     q = get_questions()
     form = QuizForm()
+    if request.method == 'POST':
+        # flash() makes Flask store the message with the desired format
+        flash('Field1: {}, Field2: {}'.format(
+            form.myField1.data, form.myField2.data))
+        masterList.append(form.myField1.data)
+        masterList.append(form.myField2.data)
+        masterList.append(form.myField3.data)
+        masterList.append(form.myField4.data)
+        masterList.append(form.myField5.data)
+        masterList.append(form.myField6.data)
+        masterList.append(form.myField7.data)
+        masterList.append(form.myField8.data)
+        masterList.append(form.myField9.data)
+        masterList.append(form.myField10.data)
+        masterList.append(form.myField11.data)
+        masterList.append(form.myField12.data)
+        masterList.append(form.myField13.data)
+        masterList.append(form.myField14.data)
+        masterList.append(form.myField15.data)
+        masterList.append(form.myField16.data)
+        # redirect() takes the user to the route argument
+        print(masterList)
+        masterList.clear()
+        return redirect('/index')
 
     # TODO get return data on submission
-    return render_template("signup.html", questions=q, form=form)
+    return render_template("test.html", questions=q, form=form)
 
 def get_questions():
     questions = [['question a', ['answer a1', "answer a2",'answer a3']],
@@ -94,14 +121,32 @@ def dog_profile(dogid):
 
 @views.route('/test', methods=["POST", "GET"])
 def test():
+    global masterList
     q = get_questions()
     form = QuizForm()
-    if form.validate_on_submit():
+    if request.method=='POST':
         # flash() makes Flask store the message with the desired format
         flash('Field1: {}, Field2: {}'.format(
             form.myField1.data, form.myField2.data))
+        masterList.append(form.myField1.data)
+        masterList.append(form.myField2.data)
+        masterList.append(form.myField3.data)
+        masterList.append(form.myField4.data)
+        masterList.append(form.myField5.data)
+        masterList.append(form.myField6.data)
+        masterList.append(form.myField7.data)
+        masterList.append(form.myField8.data)
+        masterList.append(form.myField9.data)
+        masterList.append(form.myField10.data)
+        masterList.append(form.myField11.data)
+        masterList.append(form.myField12.data)
+        masterList.append(form.myField13.data)
+        masterList.append(form.myField14.data)
+        masterList.append(form.myField15.data)
+        masterList.append(form.myField16.data)
         # redirect() takes the user to the route argument
-        print('SUCCESS')
+        print(masterList)
+        masterList.clear()
         return redirect('/index')
 
     # TODO get return data on submission
@@ -115,7 +160,7 @@ def get_dog_by_id(dogid):
     # dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
     # TODO this will perform a search function or pull from the db or something
 
-    pass
+    return dogid
 
 
 # TODO use add_url_rule instead? may have to restructure files to access "app"
