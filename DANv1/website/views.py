@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, url_for, redirect, flash
 #from website import website
 from website.forms import LoginForm
 from website.forms import QuizForm
+from dogdb import *
 
 
 views = Blueprint('views', __name__)
@@ -96,7 +97,7 @@ def dog_profile(dogid):
 def test():
     q = get_questions()
     form = QuizForm()
-    if form.validate_on_submit():
+    if request.method == "POST":
         # flash() makes Flask store the message with the desired format
         flash('Field1: {}, Field2: {}'.format(
             form.myField1.data, form.myField2.data))
@@ -110,6 +111,11 @@ def test():
 
 # TODO store dogs as objects in a csk map?
 # TODO or have a db call using dogid that returns a dog object or dict or something
+
+@views.route('/dbtest')
+def dbtest():
+    d = get_dog_by_ID(3)
+    return f'<h1>{d[0]}</h1>'
 
 def get_dog_by_id(dogid):
     # dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
