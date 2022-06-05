@@ -1,12 +1,25 @@
-# includes
-import mysql.connector
+# # includes
+# import mysql.connector
+# from flask import Flask
 
-db = mysql.connector.connect(
-host="ix-dev.cs.uoregon.edu",
-user="guest",
-password="guest",
-port=3144,
-database="dogs")
+
+# db = mysql.connector.connect(
+# host="ix-dev.cs.uoregon.edu",
+# user="guest",
+# password="guest",
+# port=3144,
+# database="dogs")
+from flask import Flask,render_template, request
+from flask_mysqldb import MySQL
+ 
+app = Flask(__name__)
+ 
+app.config['MYSQL_HOST'] = 'ix-dev.cs.uoregon.edu'
+app.config['MYSQL_USER'] = 'guest'
+app.config['MYSQL_PASSWORD'] = 'guest'
+app.config['MYSQL_DB'] = 'dogs'
+ 
+mysql = MySQL(app)
 
 removeDog = (
     "DELETE * FROM DOG WHERE dogID = %s"
