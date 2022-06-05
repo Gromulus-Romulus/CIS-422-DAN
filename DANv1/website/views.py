@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, url_for, redirect, flash
 #from website import website
 from website.forms import LoginForm
-from website.dog import Dog
+from website.forms import QuizForm
+
 
 views = Blueprint('views', __name__)
 
@@ -32,13 +33,15 @@ def login():
 @views.route('/signup') #methods = ['POST', 'GET']
 def start_quiz():
     q = get_questions()
+    form = QuizForm()
+
     # TODO get return data on submission
-    return render_template("signup.html", questions=q)
+    return render_template("signup.html", questions=q, form=form)
 
 def get_questions():
-    questions = [['question a', ['answer a1', "answer a2"]],
-    ['question b', ['answer b1', 'answer b2']],
-    ['question c', ['answer 1c', 'answer 2c']]]
+    questions = [['question a', ['answer a1', "answer a2",'answer a3']],
+    ['question b', ['answer b1', 'answer b2','answer b3']],
+    ['question c', ['answer 1c', 'answer 2c','answer c3']]]
     # TODO get actual data for here, 
     # TODO store more info for q and a ids?
     return questions
@@ -91,11 +94,17 @@ def dog_profile(dogid):
 
 @views.route('/test', methods=["POST", "GET"])
 def test():
-    if request.method == "POST":
-        d = "test"
-        return f"<h1>{d}</h1>"
+    q = get_questions()
+    form = QuizForm()
+    if form.validate_on_submit():
+        # flash() makes Flask store the message with the desired format
+        flash('Login requested for user {}, password={},remember_me={}'.format(
+            form.myField.data, form.myField.data, form.myField.data))
+        # redirect() takes the user to the route argument
+        return redirect('/index')
 
-    return render_template("test.html")
+    # TODO get return data on submission
+    return render_template("test.html", questions=q, form=form)
 
 
 # TODO store dogs as objects in a csk map?
@@ -104,8 +113,8 @@ def test():
 def get_dog_by_id(dogid):
     # dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
     # TODO this will perform a search function or pull from the db or something
-    d = Dog(dogid, "Marvin", "big")
-    return d
+
+    pass
 
 
 # TODO use add_url_rule instead? may have to restructure files to access "app"

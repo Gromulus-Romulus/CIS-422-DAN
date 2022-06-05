@@ -3,19 +3,25 @@
 {% block title %}Login{% endblock %}
 {% set active_page = 'login' %}
 {% block content %}
+<!-- displays 'Login' as header -->
 <h1>Login</h1>
+    <!-- creates form:
+    action - determines URL (if "" uses current URL)
+    method - sets HTTP request method
+    novalidate - tells webrowser to allow Flask
+    app to handle validation of input fields-->
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}
-        </p>
-        <p>
+
+
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
         </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}
+        {{ form.submit() }}</p>
     </form>
 <h4>this page is in progress</h4>
 {% endblock %}
