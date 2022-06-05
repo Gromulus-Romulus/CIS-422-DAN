@@ -9,7 +9,7 @@
     {% endif %}
     <div class="col-md-3 py-2">
         <div class="card">
-            <img src="../static/exe-dog3.jpeg" class="img-fluid" alt="Responsive image">
+            <img src="{{d[2]}}" class="img-fluid" alt="Responsive image">
             <div class="card-body">
                 <h5 class="card-title">{{d[1]}}</h5>
                 <p class="card-text">{{d[0]}} {{d[5]}} - {{d[2]}}y</p>
@@ -26,5 +26,3 @@
     {% endfor %}
 <!-- </div> -->
 {% endblock %}
-
-<!-- note - returns in this order: ID, name, age, weight, sex, breed, notes, neutered, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size, photo -->
