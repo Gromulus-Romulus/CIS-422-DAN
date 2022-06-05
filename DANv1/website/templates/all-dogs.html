@@ -9,13 +9,13 @@
     {% endif %}
     <div class="col-md-3 py-2">
         <div class="card">
-            <img src="{{d[2]}}" class="img-fluid" alt="Responsive image">
+            <img src="../static/exe-dog3.jpeg" class="img-fluid" alt="Responsive image">
             <div class="card-body">
-                <h5 class="card-title">{{d[0]}}</h5>
-                <p class="card-text">{{d[1]}}</p>
+                <h5 class="card-title">{{d[1]}}</h5>
+                <p class="card-text">{{d[5]}} - {{d[2]}}y</p>
                         <form action="#", method="post">
                       <input type="hidden" name="value" value="{{d[0]}}">
-                      <button class="btn btn-primary" type="submit" name="view_profile" value="View {{d[0]}}">View {{d[0]}}</button>
+                      <button class="btn btn-primary" type="submit" name="view_profile" value="View {{d[0]}}">View {{d[1]}}</button>
             </div>
         </div>
     </div>
@@ -26,3 +26,5 @@
     {% endfor %}
 <!-- </div> -->
 {% endblock %}
+
+<!-- note - returns in this order: ID, name, age, weight, sex, breed, notes, neutered, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size, photo -->

@@ -6,14 +6,15 @@
     <div class="row bg-light">
         <div class="col-sm">
             <h3>{{dogp.name}}</h3>
-            <h4>Male - Adult</h4>
-            <p>Neutered</p>
+            <h4>{{dogp.sex}} - {{dogp.age}} Years</h4>
+            <p>Neutered/Spayed: {{dogp.neuspay}}</p>
             <p>Friendly</p>
-            <p>Weight: xx</p>
+            <p>Weight: {{dogp.weight}}</p>
             <p>Size: {{dogp.size}}</p>
-            <p>Grooming Needs: weekly grooming</p>
-            <p>Energy Needs: </p>
-            <p>Attention Needs: </p>
+            <p>{{dogp.bio}}</p>
+            <!-- <p>Grooming Needs: weekly grooming</p> -->
+            <!-- <p>Energy Needs: </p> -->
+            <!-- <p>Attention Needs: </p> -->
         </div>
         <div class="col-sm align-items-center">
             <img class="imgfluid" src="../static/main-dog.jpeg" alt="dog image">

@@ -8,6 +8,8 @@ password="guest",
 port=3144,
 database="dogs")
 
+# TODO change neutered to neuspay
+# TODO add ageY and ageMonth? not high prioroty
 insertDog = (
     "INSERT INTO DOG"
     "(name, sex, age, breed, weight, notes, neutered, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size)"
@@ -27,6 +29,8 @@ def deleteDog(dogID):
     mycursor.execute("DELETE FROM DOG WHERE ID = %s", (dogID,))
     db.commit()
 
+
+# note - returns in this order: ID, name, age, weight, sex, breed, notes, neutered, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size, photo
 def get_dog_by_ID(dogID):
     mycursor.execute("SELECT * FROM DOG WHERE ID = %s", (dogID,))
     return mycursor.fetchall()[0]
@@ -45,4 +49,4 @@ good_with_kids = 0, shedding = 0, size = 0):
 # getDogs()
 # deleteDog(7)
 # mycursor.close()
-print(get_dog_by_ID(3))
+# print(get_dog_by_ID(3))
