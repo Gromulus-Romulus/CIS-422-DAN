@@ -12,10 +12,10 @@
             <img src="../static/exe-dog3.jpeg" class="img-fluid" alt="Responsive image">
             <div class="card-body">
                 <h5 class="card-title">{{d[1]}}</h5>
-                <p class="card-text">{{d[5]}} - {{d[2]}}y</p>
+                <p class="card-text">{{d[0]}} {{d[5]}} - {{d[2]}}y</p>
                         <form action="#", method="post">
-                      <input type="hidden" name="value" value="{{d[0]}}">
-                      <button class="btn btn-primary" type="submit" name="view_profile" value="View {{d[0]}}">View {{d[1]}}</button>
+                      <input type="hidden" name="value" value={{d[0]}}>
+                      <button class="btn btn-primary" type="submit" name="view_profile">View {{d[1]}}</button>
             </div>
         </div>
     </div>
