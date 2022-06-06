@@ -30,8 +30,9 @@ def delete_dog(dogID):
 
 def get_dog_by_ID(dogID):
     mycursor.execute("SELECT * FROM DOG WHERE ID = %s", (dogID,))
-    if mycursor.fetchall():
-        return mycursor.fetchall()[0]
+    data = mycursor.fetchall()
+    if data:
+        return data[0]
     else:
         return 0
 
@@ -46,6 +47,6 @@ good_with_kids, shedding, size):
 
 
 # add_dog("Juan", "photoID", "M", 10, "horse", "cool", 21, "needs beach ball", 0, 1, 0, 2, 2, 1, 1, 0, 1, 1, 1, 1, 0)
-print(get_dogs())
+# print(get_dogs())
 # delete_dog(7)
-print(get_dog_by_ID(7000))
+print(get_dog_by_ID(53))
