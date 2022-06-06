@@ -8,8 +8,6 @@ password="guest",
 port=3144,
 database="dogs")
 
-# TODO change neutered to neuspay
-# TODO add ageY and ageMonth? not high prioroty
 insertDog = (
     "INSERT INTO DOG"
     "(name, sex, age, breed, weight, notes, neutered, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size)"
@@ -21,8 +19,9 @@ def getDogs():
     mycursor.execute("SELECT * FROM DOG")
     dogList = []
     for x in mycursor:
-        print(x)
+        # print(x)
         dogList.append(x)
+    print(type(dogList[0]))
     return dogList
     
 def deleteDog(dogID):
