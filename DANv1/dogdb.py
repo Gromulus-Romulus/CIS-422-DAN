@@ -25,7 +25,7 @@ def get_dogs():
     print(type(dogList[0]))
     return dogList
     
-def delete_dog(dogID):
+def delete_dog(dogID): 
     mycursor.execute("DELETE FROM DOG WHERE ID = %s", (dogID,))
     db.commit()
 
