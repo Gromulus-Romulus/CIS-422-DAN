@@ -20,8 +20,9 @@ def get_dogs():
     mycursor.execute("SELECT * FROM DOG")
     dogList = []
     for x in mycursor:
-        print(x)
+        # print(x)
         dogList.append(x)
+    print(type(dogList[0]))
     return dogList
     
 def delete_dog(dogID):
@@ -31,6 +32,7 @@ def delete_dog(dogID):
 def get_dog_by_ID(dogID):
     mycursor.execute("SELECT * FROM DOG WHERE ID = %s", (dogID,))
     if mycursor.fetchall():
+<<<<<<< HEAD
         return mycursor.fetchall()[0]    
     else:
         return 0
@@ -43,10 +45,19 @@ energy, attention_req, good_with_pets,
 good_with_kids, shedding, size):
     mycursor.execute(insertDog, (name, photo, sex, age, breed, grouping, weight, notes, fixed, walks, barking, trained, training_time, yard_req, friendly, energy, attention_req, good_with_pets, good_with_kids, shedding, size,))
     db.commit()
+=======
+        return mycursor.fetchall()[0]
+    else:
+        return 0
+>>>>>>> 2c2073b6f6232080368b8e3c99c39a522cad2193
 
 
 # add_dog("Juan", "photoID", "M", 10, "horse", "cool", 21, "needs beach ball", 0, 1, 0, 2, 2, 1, 1, 0, 1, 1, 1, 1, 0)
 # get_dogs()
 # delete_dog(7)
 # mycursor.close()
+<<<<<<< HEAD
 # print(get_dog_by_ID(7000))
+=======
+# print(get_dog_by_ID(9))
+>>>>>>> 2c2073b6f6232080368b8e3c99c39a522cad2193
