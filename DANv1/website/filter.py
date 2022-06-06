@@ -7,7 +7,11 @@
 import pandas as pd
 import numpy as np
 
-import csv
+from dogdb import get_dog_by_ID, get_dogs
+
+# TODO: divide user_attributes into categorical and numerical values
+
+# TODO: map user_attributes to dog attrs
 
 # Categorical attributes
 USER_BREEDS = ['bloodhound', 'labrador retriever', 'basset hound', 'frenchie']
@@ -16,11 +20,15 @@ USER_BREEDS = ['bloodhound', 'labrador retriever', 'basset hound', 'frenchie']
 USER_ATTRS = {
     'yard_requirement': 1,
     'shedding': 1,
-    'attention': 2
+    'attention_requirement': 2
 }
 
 # import dog profiles from csv table
-PROFILES = pd.read_csv("./DAN_dog_profiles.csv")
+SQL_DATA = get_dogs()
+PROFILES = pd.DataFrame(SQL_DATA, columns = ["sql_id", "name", "photo", "sex", "age", "breed",
+"grouping", "weight", "notes", "fixed", "walks", "barking", "trained",
+"training_time", "yard_requirement", "friendly", "energy", "attention_requirement", "good_with_pets", "good_with_kids",
+"shedding", "size"])
 
 # Filter by breeds
 PROFILES_by_breed = PROFILES[PROFILES["breed"].isin(USER_BREEDS)]
@@ -42,17 +50,19 @@ distance_threshold = 2.000
 # Source: https://stackoverflow.com/questions/56115205/euclidean-distance-between-two-pandas-dataframes
 def Euclidean_Dist(df1, df2, cols=['x_coord','y_coord']):
     return np.linalg.norm(df1[cols].values - df2[cols].values,
-                   axis=1)
+                axis=1)
 
 distances = Euclidean_Dist(USER_DF, PROFILES_by_attrs, cols=quantitative_attrs)
 
 # Filter by distance, and now print to console
 IDEAL_DOGS = PROFILES_by_breed[distances <= 2.000]
 
-ids = list(IDEAL_DOGS['id'])
+ids = list(IDEAL_DOGS['sql_id'])
+photos = list(IDEAL_DOGS['photo'])
 names = list(IDEAL_DOGS['name'])
 breeds = list(IDEAL_DOGS['breed'])
 ages = list(IDEAL_DOGS['age'])
 
-print(f"Ideal Dog IDs: {[(f'{ids[i]}', f'{names[i]} the {ages[i]}-year-old {breeds[i]}') for i in range(len(IDEAL_DOGS))]}")
-
+print(ids)
+print(photos)
+print(names)

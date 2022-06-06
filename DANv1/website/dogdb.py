@@ -11,8 +11,8 @@ database="dogs")
 insertDog = (
     '''
     INSERT INTO DOG
-    (name, photo, sex, age, breed, grouping, weight, notes, fixed, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size)
-    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+    (name, photo, sex, age, breed, grouping, weight, notes, fixed, walks, barking, trained, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size)
+    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
 )
 
 mycursor = db.cursor(buffered=True)
@@ -22,6 +22,7 @@ def get_dogs():
     for x in mycursor:
         # print(x)
         dogList.append(x)
+    # print(type(dogList[0]))
     return dogList
     
 def delete_dog(dogID): 
@@ -30,19 +31,17 @@ def delete_dog(dogID):
 
 def get_dog_by_ID(dogID):
     mycursor.execute("SELECT * FROM DOG WHERE ID = %s", (dogID,))
-    data = mycursor.fetchall()
-    if data:
-        return data[0]
+    if mycursor.fetchall():
+        return mycursor.fetchall()[0]
     else:
         return 0
 
 def add_dog(
 name, photo, sex, age, breed, grouping, weight, notes, 
-fixed, walks, barking, trained, 
-training_time, yard_req, friendly, 
+fixed, walks, barking, trained, yard_req, friendly, 
 energy, attention_req, good_with_pets,
 good_with_kids, shedding, size):
-    mycursor.execute(insertDog, (name, photo, sex, age, breed, grouping, weight, notes, fixed, walks, barking, trained, training_time, yard_req, friendly, energy, attention_req, good_with_pets, good_with_kids, shedding, size,))
+    mycursor.execute(insertDog, (name, photo, sex, age, breed, grouping, weight, notes, fixed, walks, barking, trained, yard_req, friendly, energy, attention_req, good_with_pets, good_with_kids, shedding, size,))
     db.commit()
 
 
