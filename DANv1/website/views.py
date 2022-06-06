@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, url_for, redirect, flash
 #from website import website
 from website.forms import LoginForm
 from website.forms import QuizForm
+from dogdb import *
+from website.dog import Dog
 
 masterList = []
 
@@ -35,6 +37,7 @@ def login():
 def start_quiz():
 
     global masterList
+    # can we remove this questions call?
     q = get_questions()
     form = QuizForm()
     if request.method == 'POST':
@@ -59,11 +62,29 @@ def start_quiz():
         masterList.append(form.myField16.data)
         # redirect() takes the user to the route argument
         print(masterList)
-        masterList.clear()
-        return redirect('/index')
+        # masterList.clear()
+
+        # ---------------------------------
+        # masterList holds all quiz responses
+        # match_ids = magic_filter_function(masterList)
+        match_ids = [0,2,5]
+        dogs=[]
+        for id in match_ids:
+            d = get_dog_by_ID(id)
+            dogs.append(d)
+        return render_template("all-dogs.html", dogs=dogs)
+        
+        # return redirect(url_for("views.my_dogs", match_ids= match_ids))
 
     # TODO get return data on submission
     return render_template("test.html", questions=q, form=form)
+
+# TODO use filter module instead
+def magic_filter_function(quiz_results):
+    # do something
+    # print(quiz_results)
+    dog_ids = [8,11,20,13]
+    return dog_ids
 
 def get_questions():
     questions = [['question a', ['answer a1', "answer a2",'answer a3']],
@@ -73,51 +94,49 @@ def get_questions():
     # TODO store more info for q and a ids?
     return questions
 
+# TODO add login here --> dashboard that allows upload to db?
 @views.route('/shelter-login')
 def shelter():
     return render_template("shelter-login.html")
 
+# TODO add more content to this page
 @views.route('/about')
 def about():
     return render_template("about.html")
 
+# All Dog View
 @views.route('/dogs', methods=["GET", "POST"])
 def dogs():
     if request.method == "POST":
         dogid = request.form["id"]
-        # dog = "Marvin"
-        dogid = get_dog_by_id(dogid)
         return redirect(url_for("views.dog_profile", dogid = dogid))
         # return redirect(url_for("views.dog_profile", dogid = dog))
-    d = get_all_dog_ids()
+    dogs = get_dogs()
     # i = 0
-    return render_template("all-dogs.html", dogs=d)
+    return render_template("all-dogs.html", dogs=dogs)
 
-def get_all_dog_ids():
-    # for now these are just their names I made up
-    # this should pull just the info we want to display in the all dog view including the id
-    d = [["Marvin", "big", "../static/exe-dog.jpeg", "1"], 
-    ["Fido", "little", "../static/exe-dog3.jpeg", "2"], 
-    ["Binger", "medium", "../static/exe-dog.jpeg", "3"], 
-    ["Carl", "little", "../static/exe-dog.jpeg", "4"], 
-    ["Lindsey", "medium", "../static/exe-dog3.jpeg", "5"],
-    ["Annika", "big", "../static/exe-dog.jpeg", "1"], 
-    ["Rose", "little", "../static/main-dog.jpeg", "2"], 
-    ["Bella", "medium", "../static/exe-dog.jpeg", "3"], 
-    ["Bob", "little", "../static/exe-dog.jpeg", "4"], 
-    ["Phife", "medium", "../static/exe-dog3.jpeg", "5"]]
-    return d
+# TODO add some kind of validation?
+# TODO have url route be /<username>
+@views.route('/my-dogs', methods=["GET", "POST"])
+def my_dogs(match_ids):
+    if request.method == "POST":
+        dogid = request.form["id"]
+        return redirect(url_for("views.dog_profile", dogid = dogid))
+    dogs = []
+    for id in match_ids:
+        d = get_dog_by_ID(id)
+        dogs.append(d)
+    return render_template("all-dogs.html", dogs=dogs)
 
+# Individual Dog Full Profile View
 @views.route("/<dogid>")
 def dog_profile(dogid):
-    # this will call get dog by id and that will return the dog object
-    # dogp = get_dog_by_id(dogid)
+    dog = get_dog_by_ID(dogid)
+    dogp = Dog(*dog)
     # note: can also use an offcanvas element: https://getbootstrap.com/docs/5.2/components/offcanvas/#body-scrolling
-    dogp=get_dog_by_id(dogid)
     return render_template("dog-profile.html", dogp = dogp)
 
-# def get_my_dogs(usr_id):
-#     return 
+
 
 @views.route('/test', methods=["POST", "GET"])
 def test():
@@ -151,10 +170,3 @@ def test():
 
     # TODO get return data on submission
     return render_template("test.html", questions=q, form=form)
-
-
-def get_dog_by_id(dogid):
-    # dogp = ["Marvin", "big", "../static/exe-dog.jpeg", "1"]
-    # TODO this will perform a search function or pull from the db or something
-
-    return dogid
