@@ -5,20 +5,15 @@
 <!-- <div class="container"> -->
     <div class="row bg-light">
         <div class="col-sm">
-            <h3>{{dogp}}</h3>
-            <h4>Male - Adult</h4>
-            <p>Neutered</p>
-            <p>Friendly</p>
-            <p>Weight: xx</p>
-            <p>Size:</p>
-            <p>Grooming Needs: weekly grooming</p>
-            <p>Energy Needs: </p>
-            <p>Attention Needs: </p>
+            <h3>{{dogp.name}}</h3>
+            <p>{{ dopg.bio }}</p>
         </div>
-        <div class="col-sm align-items-center">
+        <div class="col-sm">
             <img class="imgfluid" src="../static/main-dog.jpeg" alt="dog image">
-            <p>this will probably eventually be associated with the dog</p>
-
+            <p>{{dogp.img}}</p>
+        </div>
+        <div class="col-sm">
+            <p>Group</p>
         </div>
     </div>
 <!-- </div> -->
