@@ -10,7 +10,7 @@ database="dogs")
 
 insertDog = (
     "INSERT INTO DOG"
-    "(name, sex, age, breed, weight, notes, fixed, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size, group)"
+    "(name, sex, age, breed, group, weight, notes, fixed, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size)"
     "VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 )
 
@@ -33,12 +33,12 @@ def get_dog_by_ID(dogID):
     return mycursor.fetchall()[0]
 
 def add_dog(
-name, sex = "M", age = 0, breed = "mix", weight = 0, notes = "", 
+name, sex = "M", age = 0, breed = "mix", group, weight = 0, notes = "", 
 neutered = 0, walks = 0, barking = 0, trained = 0, 
 training_time = 0, yard_req = 0, friendly = 0, 
 energy = 0, attention_req = 0, good_with_pets = 0,
-good_with_kids = 0, shedding = 0, size = 0, group):
-    mycursor.execute(insertDog, (name, sex, age, breed, weight, notes, neutered, walks, barking, trained, training_time, yard_req, friendly, energy, attention_req, good_with_pets, good_with_kids, shedding, size, group))
+good_with_kids = 0, shedding = 0, size = 0):
+    mycursor.execute(insertDog, (name, sex, age, breed, group, weight, notes, neutered, walks, barking, trained, training_time, yard_req, friendly, energy, attention_req, good_with_pets, good_with_kids, shedding, size))
     db.commit()
 
 
