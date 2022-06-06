@@ -15,7 +15,7 @@ insertDog = (
 )
 
 mycursor = db.cursor(buffered=True)
-def getDogs():
+def get_dogs():
     mycursor.execute("SELECT * FROM DOG")
     dogList = []
     for x in mycursor:
@@ -23,7 +23,7 @@ def getDogs():
         dogList.append(x)
     return dogList
     
-def deleteDog(dogID):
+def delete_dog(dogID):
     mycursor.execute("DELETE FROM DOG WHERE ID = %s", (dogID,))
     db.commit()
 
@@ -31,7 +31,7 @@ def get_dog_by_ID(dogID):
     mycursor.execute("SELECT * FROM DOG WHERE ID = %s", (dogID,))
     return mycursor.fetchall()[0]
 
-def addDog(
+def add_dog(
 name, sex = "M", age = 0, breed = "mix", weight = 0, notes = "", 
 neutered = 0, walks = 0, barking = 0, trained = 0, 
 training_time = 0, yard_req = 0, friendly = 0, 
@@ -45,4 +45,4 @@ good_with_kids = 0, shedding = 0, size = 0):
 # getDogs()
 # deleteDog(7)
 # mycursor.close()
-print(get_dog_by_ID(3))
+print(get_dog_by_ID(9))
