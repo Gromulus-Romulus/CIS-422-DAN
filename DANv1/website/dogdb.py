@@ -31,8 +31,9 @@ def delete_dog(dogID):
 
 def get_dog_by_ID(dogID):
     mycursor.execute("SELECT * FROM DOG WHERE ID = %s", (dogID,))
-    if mycursor.fetchall():
-        return mycursor.fetchall()[0]
+    data = mycursor.fetchall()
+    if data:
+        return data[0]
     else:
         return 0
 
