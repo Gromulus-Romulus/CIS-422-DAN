@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, url_for, redirect, flash
 #from website import website
 from website.forms import LoginForm
 from website.forms import QuizForm
-from dogdb import *
+from website.dogdb import *
 from website.dog import Dog
 
 masterList = []
