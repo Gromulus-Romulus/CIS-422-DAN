@@ -22,7 +22,6 @@ def get_dogs():
     for x in mycursor:
         # print(x)
         dogList.append(x)
-    # print(type(dogList[0]))
     return dogList
     
 def delete_dog(dogID): 
