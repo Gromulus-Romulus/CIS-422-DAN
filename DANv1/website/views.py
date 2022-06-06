@@ -66,13 +66,20 @@ def start_quiz():
 
         # ---------------------------------
         # masterList holds all quiz responses
-        # match_ids = magic_filter_function(masterList)
-        match_ids = [0,2,5]
+        match_ids = magic_filter_function(masterList)
+        # match_ids = ["3","9","12"]
+        # convert list of ids to list of dog tuples
         dogs=[]
         for id in match_ids:
+            print("looking for "+ str(id))
             d = get_dog_by_ID(id)
-            dogs.append(d)
+            if d != 0:
+                dogs.append(d)
+        # TESTING use to show dogs from junk data
         return render_template("all-dogs.html", dogs=dogs)
+
+        # TESTING Use this to show the quiz results after pressing submit button
+        # return f"<h1>{masterList}</h1>"
         
         # return redirect(url_for("views.my_dogs", match_ids= match_ids))
 
@@ -83,7 +90,7 @@ def start_quiz():
 def magic_filter_function(quiz_results):
     # do something
     # print(quiz_results)
-    dog_ids = [8,11,20,13]
+    dog_ids = [3,9]
     return dog_ids
 
 def get_questions():
