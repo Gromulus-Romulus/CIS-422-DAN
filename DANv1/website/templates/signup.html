@@ -1,43 +1,67 @@
+
+
 {% extends "base.html" %}
 {% block title %}Sign up{% endblock %}
 {% set active_page = 'login' %}
 {% block content %}
-<div class="container">
 
-    <h1>This is the sign up page!</h1>
-    <h2>There will be a form here for users to fill out about their lifestyle</h2>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod architecto veniam amet officiis ab, consequuntur maiores optio temporibus autem ratione, quo quos? Dignissimos distinctio repudiandae necessitatibus cupiditate, impedit cum accusamus?</p>
 
-    <!-- TODO figure out if we can auto populate this w a for loop? -->
-    <div class="container">
-        <h4>Question 1</h4>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-            <label class="form-check-label" for="exampleRadios1">
-            Default radio
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-            <label class="form-check-label" for="exampleRadios2">
-            Second default radio
-            </label>
-        </div>
-    </div>
-    <div>
-        {% for q in questions %}
-            <h4>{{ q[0] }}</h4>
-            {% for a in q[1] %}
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="test{{q}}" value="{{a}}" id="id{{a}}">
-                    <label class="form-check-label" for="id{{a}}">
-                        {{a}}
-                    </label>
-                </div>
-            {% endfor %}
-        {% endfor %}
+
+
+<form action="" method="post" >
+
+    <p>{{ form.myField1.label }}
+        {{form.myField1}}</p>
+
+    <p>{{ form.myField2.label }}
+        {{form.myField2}}</p>
+
+    <p>{{ form.myField3.label }}
+        {{form.myField3}}</p>
+
+    <p>{{ form.myField4.label }}
+        {{form.myField4}}</p>
+
+    <p>{{ form.myField5.label }}
+        {{form.myField5}}</p>
+
+    <p>{{ form.myField6.label }}
+        {{form.myField6}}</p>
+
+    <p>{{ form.myField7.label }}
+        {{form.myField7}}</p>
+
+    <p>{{ form.myField8.label }}
+        {{form.myField8}}</p>
+
+    <p>{{ form.myField9.label }}
+        {{form.myField9}}</p>
+
+    <p>{{ form.myField10.label }}
+        {{form.myField10}}</p>
+
+    <p>{{ form.myField11.label }}
+        {{form.myField11}}</p>
+
+    <p>{{ form.myField12.label }}
+        {{form.myField12}}</p>
+
+    <p>{{ form.myField13.label }}
+        {{form.myField13}}</p>
+
+    <p>{{ form.myField14.label }}
+        {{form.myField14}}</p>
+
+    <p>{{ form.myField15.label }}
+        {{form.myField15}}</p>
+
+    <p>{{ form.myField16.label }}
+        {{form.myField16}}</p>
 
     <p>{{ form.submit() }}</p>
-    </div>
-</div>
+
+</form>
+
+
+
 {% endblock %}
