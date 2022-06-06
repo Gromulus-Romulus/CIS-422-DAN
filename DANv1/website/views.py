@@ -42,9 +42,21 @@ def start_quiz():
     form = QuizForm()
     if request.method == 'POST':
         # flash() makes Flask store the message with the desired format
-        flash('Field1: {}, Field2: {}'.format(
-            form.myField1.data, form.myField2.data))
-        masterList.append(form.myField1.data)
+
+        masterList.append(int(form.myField6.data))
+        masterList.append(int(form.myField16.data))
+        masterList.append(int(form.myField11.data))
+        masterList.append(int(form.myField2.data))
+        masterList.append((int(form.myField3.data) + int(form.myField13.data))//2)
+        masterList.append((int(form.myField6.data) + int(form.myField7.data) + int(form.myField2.data)
+                           + int(form.myField10.data) + int(form.myField1.data))//2)
+        masterList.append(int(form.myField7.data))
+        masterList.append(int(form.myField4.data))
+        masterList.append(int(form.myField5.data))
+        masterList.append((int(form.myField15.data) + int(form.myField14.data)) // 2)
+        masterList.append((int(form.myField1.data) + int(form.myField8.data)) // 2)
+
+        '''masterList.append(form.myField1.data)
         masterList.append(form.myField2.data)
         masterList.append(form.myField3.data)
         masterList.append(form.myField4.data)
@@ -59,8 +71,12 @@ def start_quiz():
         masterList.append(form.myField13.data)
         masterList.append(form.myField14.data)
         masterList.append(form.myField15.data)
-        masterList.append(form.myField16.data)
+        masterList.append(form.myField16.data)'''
         # redirect() takes the user to the route argument
+        '''with open('info.txt', 'w') as f:
+            for item in masterList:
+                f.write(item)'''
+
         print(masterList)
         # masterList.clear()
 
