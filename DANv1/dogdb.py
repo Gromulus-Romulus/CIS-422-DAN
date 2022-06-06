@@ -49,4 +49,4 @@ good_with_kids, shedding, size):
 # add_dog("Juan", "photoID", "M", 10, "horse", "cool", 21, "needs beach ball", 0, 1, 0, 2, 2, 1, 1, 0, 1, 1, 1, 1, 0)
 # print(get_dogs())
 # delete_dog(7)
-print(get_dog_by_ID(53))
+# print(get_dog_by_ID(53))
