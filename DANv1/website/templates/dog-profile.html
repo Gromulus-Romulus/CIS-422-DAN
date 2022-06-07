@@ -2,30 +2,23 @@
 {% block title %}look at this one dog!{% endblock %}
 {% set active_page = none %}
 {% block content %}
-<!-- <div class="container"> -->
-    <div class="row bg-light">
+    <div class="row">
         <div class="col-sm">
             <h3>{{dogp.name}}</h3>
             <p>{{ dogp.bio }}</p>
         </div>
-        <div class="col-sm bg-danger">
+        <div class="col-sm">
             <img class="img-fluid" src="../static/{{dogp.img}}.jpeg" alt="{{dogp.name}} image">
-            <p>{{dogp.walks}}</p>
         </div>
         <div class="col-sm">
-            <div class="row">
-                <div class="col-sm bg-primary">
-                    <p>Breed:</p>
-                    <p>Group:</p>
-                </div>
-                <div class="col-sm bg-secondary">
-                    <p>{{ dogp.breed }}</p>
-                    <p>{{ dogp.group }}</p>
-                </div>
-            </div>
+            <p>Breed: {{ dogp.breed }}</p>
+            <p>Group: {{ dogp.group }}</p>
+            <p>Size: {{ dogp.size }} {{ dogp.weight }}lbs</p>
+            <p>Good with kids: {{ dogp.kids }}</p>
+            <p>Good with other pets: {{ dogp.pets }}</p>
+            <p>Neutered/Spayed: {{ dogp.neuspay }}</p>
             
         </div>
     </div>
-<!-- </div> -->
 {% endblock %}
 
