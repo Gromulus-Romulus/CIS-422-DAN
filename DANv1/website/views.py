@@ -37,8 +37,6 @@ def login():
 def start_quiz():
 
     global masterList
-    # can we remove this questions call?
-    q = get_questions()
     form = QuizForm()
     if request.method == 'POST':
         # flash() makes Flask store the message with the desired format
@@ -55,27 +53,6 @@ def start_quiz():
         masterList.append(int(form.myField5.data))
         masterList.append((int(form.myField15.data) + int(form.myField14.data)) // 2)
         masterList.append((int(form.myField1.data) + int(form.myField8.data)) // 2)
-
-        '''masterList.append(form.myField1.data)
-        masterList.append(form.myField2.data)
-        masterList.append(form.myField3.data)
-        masterList.append(form.myField4.data)
-        masterList.append(form.myField5.data)
-        masterList.append(form.myField6.data)
-        masterList.append(form.myField7.data)
-        masterList.append(form.myField8.data)
-        masterList.append(form.myField9.data)
-        masterList.append(form.myField10.data)
-        masterList.append(form.myField11.data)
-        masterList.append(form.myField12.data)
-        masterList.append(form.myField13.data)
-        masterList.append(form.myField14.data)
-        masterList.append(form.myField15.data)
-        masterList.append(form.myField16.data)'''
-        # redirect() takes the user to the route argument
-        '''with open('info.txt', 'w') as f:
-            for item in masterList:
-                f.write(item)'''
 
         print(masterList)
         # masterList.clear()
@@ -95,8 +72,10 @@ def start_quiz():
                 dogs.append(d)"""
 
         # TESTING use to show dogs from junk data
+
         return redirect(url_for("views.my_dogs"))
         #return render_template("all-dogs.html", dogs=dogs)
+
 
         # TESTING Use this to show the quiz results after pressing submit button
         # return f"<h1>{masterList}</h1>"
@@ -104,7 +83,9 @@ def start_quiz():
         # return redirect(url_for("views.my_dogs", match_ids= match_ids))
 
     # TODO get return data on submission
+
     return render_template("signup.html", questions=q, form=form)
+
 
 # TODO use filter module instead
 def magic_filter_function(quiz_results):
@@ -150,6 +131,7 @@ def my_dogs():
     if request.method == "POST":
         dogid = request.form["id"]
         return redirect(url_for("views.dog_profile", dogid = dogid))
+    
     dogs = []
     for id in match_ids:
         d = get_dog_by_ID(id)
