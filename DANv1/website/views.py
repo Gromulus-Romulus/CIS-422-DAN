@@ -88,7 +88,7 @@ def start_quiz():
 
     # TODO get return data on submission
 
-    return render_template("signup.html", questions=q, form=form)
+    return render_template("signup.html", form=form)
 
 
 def get_questions():
