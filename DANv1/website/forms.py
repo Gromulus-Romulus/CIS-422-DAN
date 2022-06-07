@@ -1,8 +1,12 @@
+'''
+This file creates the form classes for our login and quiz functionality
+'''
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 class LoginForm(FlaskForm):
+    '''This class creates the forms necessary for the login function'''
     # StringFields take user string input
     # PasswordField take user string input but displays in asterisk form
     # BooleanField creates a on/off toggle button
@@ -13,7 +17,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class QuizForm(FlaskForm):
-    # INCREDIBLY SCUFFED QUIZ METHOD: create a unique SelectField() for each question
+    ''' This class creates the forms necessary for the startQuiz() function'''
+    # each myField variable is a different question,
+    #   in the form of a SelectField() which is a drop down menu
+    # the first string passed into SelectField() creates the label
+    # choices defines the questions that will be displayed in the
+    #   drop-down menu and their corresponding values
     submit = SubmitField('Submit')
     myField1 = SelectField('Where do you live?', choices=((0,"house"),(1,"apartment"),(2,"houseless")))
     myField2 = SelectField('What kind of outdoor space do you have access to?', choices=((0,"none"), (1,"yard"), (2,"park")))
@@ -34,4 +43,3 @@ class QuizForm(FlaskForm):
 
 
 
-#, validators=[DataRequired()]

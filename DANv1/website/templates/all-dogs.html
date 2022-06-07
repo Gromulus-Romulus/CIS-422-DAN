@@ -1,12 +1,18 @@
+<!-- the purpose of this file is to create the webpage displaying multiple dogs in our database -->
 {% extends "base.html" %}
 {% block title %}look at all these dogs!{% endblock %}
 {% set active_page = none %}
 {% block content %}
-<!-- <div class="container"> -->
+
+
     {% for d in dogs %}
+    <!-- this code loops through the list of dogs to be displayed on the page -->
     {% if loop.index0 % 4 == 0 %}
+    <!-- after 4 columns a new row is created -->
     <div class="row">
     {% endif %}
+
+    <!-- the code below is the template for the dog profile displays on the webpage  -->
     <div class="col-md-3 py-2">
         <div class="card">
             <img src="../static/{{d[2]}}.jpeg" class="img-fluid" alt="Responsive image">
@@ -14,12 +20,14 @@
                 <h5 class="card-title">{{d[1]}}</h5>
                 <p class="card-text">{{d[6]}} {{d[7]}}lbs - {{d[4]}} Years</p>
                         <form action="#", method="post">
+                            <!-- creates the button for accessing the individual dog profiles -->
                       <button class="btn btn-primary" type="submit" name="id" value="{{d[0]}}">View {{d[1]}}</button>
             </div>
         </div>
     </div>
+
     {% if (loop.index0+1) % 4 == 0 or loop.last%}
-    
+    <!-- after 4 columns the current row is closed -->
     </div>
     {% endif %}
     {% endfor %}

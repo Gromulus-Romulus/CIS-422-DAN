@@ -1,3 +1,4 @@
+<!-- this file is the template for the home webpage of our application -->
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% set active_page = 'home' %}
@@ -10,6 +11,7 @@
         <!-- TODO center (or at least lower) this entire thing-->
         <!-- TODO put the content from the left col into a card -->
         <div class="col-xl-4 align-self-center bg-light">
+                <!-- this displays our message to the viewer upon starting up the application -->
                 <h2>Welcome to Dan! Find your forever pet today!</h2> 
                 <p>Finding a pet is hard, and there is more of a need forever to find the perfect companion!
                    The DAN web application is designed with the intention of pairing prospective dog owners with a pet that
@@ -18,9 +20,11 @@
                 <div class="row justify-content-center">
                     <div class = "col-md">
                         <a href="signup"><button class="btn btn-primary">Start</button></a>
+                        <!-- creates the button which takes the user to our quiz -->
                     </div>
                     <div class = "col-md">
                         <a href="dogs"><button class="btn btn-outline-primary">View Dogs</button></a>
+                        <!-- creates the button that takes the user to a view of all the dogs in our database -->
                     </div>
                 </div>
         </div>

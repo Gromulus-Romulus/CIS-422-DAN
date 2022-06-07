@@ -1,4 +1,5 @@
-
+<!-- this file is the template for our login webpage
+     it is not fully functional yet-->
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% set active_page = 'login' %}
@@ -13,15 +14,20 @@
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
+
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}
+            <!-- creates text entry for the username -->
 
 
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
+            <!-- creates text entry for the password -->
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}
+            <!-- creates a 'remember me' toggleable button -->
         {{ form.submit() }}</p>
+        <!-- creates a button to submit the info -->
     </form>
 <h4>this page is in progress</h4>
 {% endblock %}
