@@ -19,11 +19,11 @@ class Dog:
         else:
             self.sex = sex
         
-        if size == 1:
+        if size == 0:
             self.size = "Small"
-        elif size == 2:
+        elif size == 1:
             self.size = "Medium"
-        elif size == 3:
+        elif size == 2:
             self.size = "Large"
         else:
             self.size = ""
@@ -32,15 +32,24 @@ class Dog:
         self.group = grouping
         self.weight = weight
         self.bio = notes
-        self.neuspay = fixed
+        if fixed == 1:
+            self.neuspay = "yes"
+        else:
+            self.neuspay = "no"
         self.walks = walks
         self.bark = barking
         self.trained = trained
         self.yard = yard_req
         self.friendly = friendly
         self.energy = energy
-        self.kids = good_with_kids
-        self.pets = good_with_pets
+        if good_with_kids == 1:
+            self.kids = "yes"
+        else:
+            self.kids = "no"
+        if good_with_pets == 1:
+            self.kids = "yes"
+        else:
+            self.pets = "no"
         self.shedding = shedding
         self.img = photo
         self.attention = attention_req

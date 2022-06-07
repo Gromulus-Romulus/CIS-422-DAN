@@ -144,8 +144,6 @@ def dog_profile(dogid):
     # note: can also use an offcanvas element: https://getbootstrap.com/docs/5.2/components/offcanvas/#body-scrolling
     return render_template("dog-profile.html", dogp = dogp)
 
-
-
 @views.route('/test', methods=["POST", "GET"])
 def test():
     global masterList

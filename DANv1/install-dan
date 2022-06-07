@@ -1,0 +1,5 @@
+pip install pandas
+pip install numpy
+pip install mysql-connector
+pip install flask
+pip install flask_wtf
