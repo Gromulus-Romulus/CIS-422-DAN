@@ -4,6 +4,7 @@ from website.forms import LoginForm
 from website.forms import QuizForm
 from website.dogdb import *
 from website.dog import Dog
+from website.filter import magic_filter_function
 
 masterList = []
 
@@ -37,6 +38,9 @@ def login():
 def start_quiz():
 
     global masterList
+    # reset masterlist
+    masterList = []
+
     # can we remove this questions call?
     q = get_questions()
     form = QuizForm()
@@ -92,22 +96,16 @@ def start_quiz():
             if d != 0:
                 dogs.append(d)
         # TESTING use to show dogs from junk data
-        return render_template("all-dogs.html", dogs=dogs)
+
+        # return render_template("all-dogs.html", dogs=dogs)
 
         # TESTING Use this to show the quiz results after pressing submit button
-        # return f"<h1>{masterList}</h1>"
+        return f"<h1>{masterList}{match_ids}</h1>"
         
         # return redirect(url_for("views.my_dogs", match_ids= match_ids))
 
     # TODO get return data on submission
     return render_template("test.html", questions=q, form=form)
-
-# TODO use filter module instead
-def magic_filter_function(quiz_results):
-    # do something
-    # print(quiz_results)
-    dog_ids = [3,9]
-    return dog_ids
 
 def get_questions():
     questions = [['question a', ['answer a1', "answer a2",'answer a3']],
