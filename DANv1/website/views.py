@@ -69,7 +69,7 @@ def start_quiz():
             if d != 0:
                 dogs.append(d)
         # TESTING use to show dogs from junk data
-        return redirect(url_for("views.dogs", dogs=dogs))
+        return redirect(url_for("views.my_dogs", dogs=dogs))
 
         # TESTING Use this to show the quiz results after pressing submit button
         # return f"<h1>{masterList}</h1>"
@@ -122,6 +122,7 @@ def my_dogs(match_ids):
     if request.method == "POST":
         dogid = request.form["id"]
         return redirect(url_for("views.dog_profile", dogid = dogid))
+    
     dogs = []
     for id in match_ids:
         d = get_dog_by_ID(id)
