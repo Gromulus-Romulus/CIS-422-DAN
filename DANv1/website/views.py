@@ -82,17 +82,21 @@ def start_quiz():
 
         # ---------------------------------
         # masterList holds all quiz responses
+        global match_ids
         match_ids = magic_filter_function(masterList)
+
         # match_ids = ["3","9","12"]
         # convert list of ids to list of dog tuples
-        dogs=[]
+        """dogs=[]
         for id in match_ids:
             print("looking for "+ str(id))
             d = get_dog_by_ID(id)
             if d != 0:
-                dogs.append(d)
+                dogs.append(d)"""
+
         # TESTING use to show dogs from junk data
-        return render_template("all-dogs.html", dogs=dogs)
+        return redirect(url_for("views.my_dogs"))
+        #return render_template("all-dogs.html", dogs=dogs)
 
         # TESTING Use this to show the quiz results after pressing submit button
         # return f"<h1>{masterList}</h1>"
@@ -100,7 +104,7 @@ def start_quiz():
         # return redirect(url_for("views.my_dogs", match_ids= match_ids))
 
     # TODO get return data on submission
-    return render_template("test.html", questions=q, form=form)
+    return render_template("signup.html", questions=q, form=form)
 
 # TODO use filter module instead
 def magic_filter_function(quiz_results):
@@ -141,7 +145,8 @@ def dogs():
 # TODO add some kind of validation?
 # TODO have url route be /<username>
 @views.route('/my-dogs', methods=["GET", "POST"])
-def my_dogs(match_ids):
+def my_dogs():
+    global match_ids
     if request.method == "POST":
         dogid = request.form["id"]
         return redirect(url_for("views.dog_profile", dogid = dogid))
@@ -149,6 +154,7 @@ def my_dogs(match_ids):
     for id in match_ids:
         d = get_dog_by_ID(id)
         dogs.append(d)
+    match_ids.clear()
     return render_template("all-dogs.html", dogs=dogs)
 
 # Individual Dog Full Profile View
