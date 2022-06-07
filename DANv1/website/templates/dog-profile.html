@@ -8,12 +8,22 @@
             <h3>{{dogp.name}}</h3>
             <p>{{ dogp.bio }}</p>
         </div>
-        <div class="col-sm">
-            <img class="imgfluid" src="../static/main-dog.jpeg" alt="dog image">
-            <p>{{dogp.img}}</p>
+        <div class="col-sm bg-danger">
+            <img class="img-fluid" src="../static/{{dogp.img}}.jpeg" alt="{{dogp.name}} image">
+            <p>{{dogp.walks}}</p>
         </div>
         <div class="col-sm">
-            <p>Group</p>
+            <div class="row">
+                <div class="col-sm bg-primary">
+                    <p>Breed:</p>
+                    <p>Group:</p>
+                </div>
+                <div class="col-sm bg-secondary">
+                    <p>{{ dogp.breed }}</p>
+                    <p>{{ dogp.group }}</p>
+                </div>
+            </div>
+            
         </div>
     </div>
 <!-- </div> -->
