@@ -7,62 +7,58 @@
 import pandas as pd
 import numpy as np
 
-from dogdb import get_dog_by_ID, get_dogs
+from website.dogdb import get_dogs
 
-# TODO: divide user_attributes into categorical and numerical values
+def magic_filter_function(user_attributes):
 
-# TODO: map user_attributes to dog attrs
+    # Order of user_attributes:
+    attr_order = [
+        "walks",
+        "barking",
+        "trained",
+        "yard_requirement",
+        "friendly",
+        "energy",
+        "attention_requirement",
+        "good_with_pets",
+        "good_with_kids",
+        "shedding",
+        "size"
+    ]
 
-# Categorical attributes
-USER_BREEDS = ['bloodhound', 'labrador retriever', 'basset hound', 'frenchie']
+    # import dog profiles from csv table
+    SQL_DATA = get_dogs()
+    PROFILES = pd.DataFrame(SQL_DATA, columns = ["sql_id", "name", "photo", "sex", "age", "breed",
+    "grouping", "weight", "notes", "fixed", "walks", "barking", "trained",
+    "training_time", "yard_requirement", "friendly", "energy", "attention_requirement", "good_with_pets", "good_with_kids",
+    "shedding", "size"])
 
-# Quantitative attributes
-USER_ATTRS = {
-    'yard_requirement': 1,
-    'shedding': 1,
-    'attention_requirement': 2
-}
+    # Convert to pandas dataframe
+    user_df_data = {}
+    for i in range(len(attr_order)):
+        attr = attr_order[i]
+        user_df_data[attr] = user_attributes[i]
 
-# import dog profiles from csv table
-SQL_DATA = get_dogs()
-PROFILES = pd.DataFrame(SQL_DATA, columns = ["sql_id", "name", "photo", "sex", "age", "breed",
-"grouping", "weight", "notes", "fixed", "walks", "barking", "trained",
-"training_time", "yard_requirement", "friendly", "energy", "attention_requirement", "good_with_pets", "good_with_kids",
-"shedding", "size"])
+    USER = pd.DataFrame(data = user_df_data, index=[0])
 
-# Filter by breeds
-PROFILES_by_breed = PROFILES[PROFILES["breed"].isin(USER_BREEDS)]
+    # Filter dataframe by attribute
+    PROFILES_by_attr = PROFILES[attr_order]
 
-# Filter by quantitative attributes
-quantitative_attrs = list(USER_ATTRS.keys())
+    # Use euclidean distance algorithm to determine which dogs are good fits
+    # The distance threshold is kind of an arbitray value, but it determines the degree to which
+    # a dog should be "close" to ideal
+    distance_threshold = 3.000
 
-# Convert to pandas dataframe
-USER_DF = pd.DataFrame(data = USER_ATTRS, index=[0])
+    # Source: https://stackoverflow.com/questions/56115205/euclidean-distance-between-two-pandas-dataframes
+    def Euclidean_Dist(df1, df2, cols=['x_coord','y_coord']):
+        return np.linalg.norm(df1[cols].values - df2[cols].values,
+                    axis=1)
 
-# Filter PROFILES_BY_BREED to isolate quantitative attributes
-PROFILES_by_attrs = PROFILES_by_breed[quantitative_attrs]
+    distances = Euclidean_Dist(USER, PROFILES_by_attr, cols=attr_order)
 
-# Use euclidean distance algorithm to determine which dogs are good fits
-# The distance threshold is kind of an arbitray value, but it determines the degree to which
-# a dog should be "close" to ideal
-distance_threshold = 2.000
+    # Filter by distance, and now print to console
+    IDEAL_DOGS = PROFILES[distances <= distance_threshold]
 
-# Source: https://stackoverflow.com/questions/56115205/euclidean-distance-between-two-pandas-dataframes
-def Euclidean_Dist(df1, df2, cols=['x_coord','y_coord']):
-    return np.linalg.norm(df1[cols].values - df2[cols].values,
-                axis=1)
+    ids = list(IDEAL_DOGS['sql_id'])
 
-distances = Euclidean_Dist(USER_DF, PROFILES_by_attrs, cols=quantitative_attrs)
-
-# Filter by distance, and now print to console
-IDEAL_DOGS = PROFILES_by_breed[distances <= 2.000]
-
-ids = list(IDEAL_DOGS['sql_id'])
-photos = list(IDEAL_DOGS['photo'])
-names = list(IDEAL_DOGS['name'])
-breeds = list(IDEAL_DOGS['breed'])
-ages = list(IDEAL_DOGS['age'])
-
-print(ids)
-print(photos)
-print(names)
+    return ids

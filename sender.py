@@ -3,7 +3,7 @@
 # Author: Nathan M.
 #
 
-from DANv1.dogdb import add_dog, delete_dog, get_dogs, get_dog_by_ID
+from DANv1.website.dogdb import add_dog, delete_dog, get_dogs, get_dog_by_ID
 
 # import dog profiles from csv table
 
