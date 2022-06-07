@@ -4,11 +4,7 @@
 # this class is only used to display an individual dog's profile
 # it's structured like this to make it easier to manage changes to the database structure 
 class Dog:
-    def __init__(self, ID, name, photo, sex, age, breed, grouping, weight, notes, 
-fixed, walks, barking, trained, 
-training_time, yard_req, friendly, 
-energy, attention_req, good_with_pets,
-good_with_kids, shedding, size):
+    def __init__(self, ID, name, photo, sex, age, breed, grouping, weight, notes, fixed, walks, barking, trained, training_time, yard_req, friendly, energy, attention_req, good_with_pets, good_with_kids, shedding, size):
         self.id = ID
         # maybe just generate size from weight using a range
         self.name = name
