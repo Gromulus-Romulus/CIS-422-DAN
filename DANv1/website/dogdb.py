@@ -6,7 +6,6 @@ import mysql.connector
 
 
 db = mysql.connector.connect(
-'''creates the format for the database'''
 host="ix-dev.cs.uoregon.edu",
 user="guest",
 password="guest",
