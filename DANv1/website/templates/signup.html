@@ -1,5 +1,4 @@
-
-
+<!-- this file is the template for the quiz webpage -->
 {% extends "base.html" %}
 {% block title %}Sign up{% endblock %}
 {% set active_page = 'login' %}
@@ -9,9 +8,12 @@
 
 
 <form action="" method="post" >
+<!-- this form contains all of the drop down menus for every question (each question is called myField) in our quiz -->
 
     <p>{{ form.myField1.label }}
+        <!-- the label is the text of the question -->
         {{form.myField1}}</p>
+        <!-- this displays the answer to the question -->
 
     <p>{{ form.myField2.label }}
         {{form.myField2}}</p>
@@ -58,7 +60,10 @@
     <p>{{ form.myField16.label }}
         {{form.myField16}}</p>
 
+
     <p>{{ form.submit() }}</p>
+    <!-- this creates the burron to submit the quiz answers.
+    the answers aren't saved until hitting submit -->
 
 </form>
 

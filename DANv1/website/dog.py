@@ -1,12 +1,16 @@
 # ID, name, age, weight, sex, breed, notes, neutered, walks, barking, trained, training_time, yard_requirement, friendly, energy, attention_requirement, good_with_pets, good_with_kids, shedding, size, photo
+'''
+This class creates the dog profile class.
+'''
 
-
-# this class is only used to display an individual dog's profile
-# it's structured like this to make it easier to manage changes to the database structure 
 class Dog:
+    ''' This class is only used to display an individual dog's profile.
+     It's structured like this to make it easier to manage changes to the database structure.
+    '''
     def __init__(self, ID, name, photo, sex, age, breed, grouping, weight, notes, fixed, walks, barking, trained, training_time, yard_req, friendly, energy, attention_req, good_with_pets, good_with_kids, shedding, size):
+        ''' Initializes all the attributes of a dog'''
         self.id = ID
-        # maybe just generate size from weight using a range
+
         self.name = name
         if(sex == 'F'):
             self.sex = "Female"
@@ -42,5 +46,3 @@ class Dog:
         self.attention = attention_req
 
 
-# def render_dog(dbTuple)
-# TODO two different types of dog objects? or one type that always has redundancies?

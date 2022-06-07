@@ -1,3 +1,4 @@
+<!-- this file is the template for the webpage displaying a specific dog's details -->
 {% extends "base.html" %}
 {% block title %}look at this one dog!{% endblock %}
 {% set active_page = none %}
@@ -9,6 +10,7 @@
             <p>{{ dogp.bio }}</p>
         </div>
         <div class="col-sm bg-danger">
+            <!-- displays the picture of the dog whose profile it is-->
             <img class="img-fluid" src="../static/{{dogp.img}}.jpeg" alt="{{dogp.name}} image">
             <p>{{dogp.walks}}</p>
         </div>
